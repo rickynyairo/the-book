@@ -1,34 +1,39 @@
-// use crate reference_and_borrowing::reference_and_borrowin;
-// mod ownership;
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+}
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+fn tuple_structs() {
+    let black = Color(0, 0, 0);
+    let origin = Point(0, 0, 0);
+}
+
+fn build_user(email: String, username: String) -> User {
+    User {
+        active: true,
+        username,
+        email,
+        sign_in_count: 1,
+    }
+}
 
 fn main() {
-    let s = String::from("Hello world!");
-    println!("Hello, world!");
-    println!("First space is at => {}", first_word(&s));
-    let hello = &s[0..5];
-    let world = &s[6..11];
-    println!("{} {}!", hello, world);
-    println!("First word is => {}", first_word_slice(&s))
-}
-fn first_word(s: &String) -> usize {
-    let bytes = s.as_bytes();
+    let user1 = build_user(
+        String::from("someone@example.com"),
+        String::from("someusername123"),
+    );
 
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return i;
-        }
+    let user2 = User {
+        email: String::from("another@example.com"),
+        username: String::from(""),
+        ..user1
+    };
+    {
+       let a = user1;
     }
 
-    s.len()
-}
-fn first_word_slice(s: &str) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
-    }
-
-    &s[..]
 }
