@@ -3,7 +3,14 @@ struct Rectangle {
     width: u32,
     height: u32,
 }
+
 impl Rectangle {
+    fn new(width: u32, height: u32) -> Self{
+        Self {
+            width,
+            height,
+        }
+    }
     fn area(&self) -> u32 {
         self.width * self.height
     }
@@ -33,7 +40,8 @@ fn main() {
         height: 45,
     };
     let sq = Rectangle::square(40);
-    dbg!(&rect1);
+    let rec = Rectangle::new(40, 90);
+    dbg!(&rec);
     println!(
         "The area of the rectangle is {} square pixels.",
         call_area(area, &rect1)
